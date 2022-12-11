@@ -2,6 +2,16 @@
 #include <string>
 #include <DeviceManager.h>
 
+/**
+ * 主UI用户交互
+ * 1. 新设备连接
+ * 2. 申请设备
+ * 3. 释放设备
+ * 4. 设备断开
+ * 5. 显示所有设备
+ * 6. 退出
+ * @return 返回用户选择的选项
+ */
 int show_main_ui();
 
 int main() {
