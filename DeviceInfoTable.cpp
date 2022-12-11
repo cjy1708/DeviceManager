@@ -123,11 +123,11 @@ namespace magic_sheep {
 
         std::string line_buffer;
         std::regex pattern{R"((\w+))"};
-        std::string_view kind;
-        std::string_view name;
-        uint64_t physical_address_{ };
-        pid_t pid_{ };
-        uint64_t in_precess_virtual_address_{ };
+        std::string kind;
+        std::string name;
+        uint64_t physical_address{ };
+        pid_t pid{ };
+        uint64_t in_precess_virtual_address{ };
         device_table.seekg(0, std::ios::beg);
         size_t blank_line{ };
         while (std::getline(device_table, line_buffer))
@@ -147,17 +147,17 @@ namespace magic_sheep {
             ++begin;
             check_no_end_throw(begin);
             // 物理地址
-            physical_address_ = std::stoull(begin->str());
+            physical_address = std::stoull(begin->str());
             ++begin;
             check_no_end_throw(begin);
             // 持有者pid
-            pid_ =  std::stoi(begin->str());
+            pid =  std::stoi(begin->str());
             ++begin;
             check_no_end_throw(begin);
             // 进程内虚拟地址
-            in_precess_virtual_address_ = std::stoull(begin->str());
+            in_precess_virtual_address = std::stoull(begin->str());
 
-            res.emplace_back(kind, name, physical_address_, pid_, in_precess_virtual_address_);
+            res.emplace_back(kind, name, physical_address, pid, in_precess_virtual_address);
         }
         device_table.close();
 

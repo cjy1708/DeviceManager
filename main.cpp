@@ -55,9 +55,14 @@ int main() {
             }
             case 5: {
                 auto all_device{DeviceManager::show_all_device()};
-                for (auto &device: all_device) {
-                    cout << device.kind << "\t" << device.name << "\t" << device.physical_address << "\t"
-                         << device.pid << "\t" << device.in_precess_virtual_address << endl;
+                if (all_device.empty()) {
+                    cout << "not device have connected" << endl;
+                    break;
+                }
+                for (size_t i{ }; i < all_device.size(); ++i) {
+                    cout << "[" << i << "]: " << all_device[i].kind << flush << "\t" << flush << all_device[i].name << flush  << "\t" << flush
+                         << all_device[i].physical_address << flush  << "\t" << flush
+                         << all_device[i].pid << flush  << "\t" << flush  << all_device[i].in_precess_virtual_address << endl;
                 }
                 break;
             }
